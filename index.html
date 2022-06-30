@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Pagina de Registro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'><link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+<body>
+  <div id="Background">
+    <img id="Bgimg" src="https://i.pinimg.com/originals/da/00/e8/da00e8b5f67f4a4c8d4c0d539446e02b.jpg">
+  </div>
+  <div class="container">
+    <div class="backbox">
+      <div class="loginMsg">
+        <div class="textcontent">
+          <p class="title">¿Aún no tienes una cuenta?</p>
+          <p>Dale al botón para unirte</p>
+          <button id="switch1">Registrate</button>
+        </div>
+      </div>
+      <div class="signupMsg visibility">
+        <div class="textcontent">
+          <p class="title">¿Ya eres parte de nosotros?</p >
+          <p>Inicia sesión para continuar</p>
+          <button id="switch2">Iniciar sesión</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="frontbox">
+      <div class="login">
+        <h2>Iniciar Sesión</h2>
+        <div class="inputbox">
+          <input id="Logemail" type="email" name=""  placeholder="  Correo Electrónico">
+          <input id="Logpassword" type="password" name="" placeholder="  Contraseña">
+        </div>
+        <p>¿Olvidaste tu contraseña?</p>
+        <button id="Login">Iniciar sesión</button>
+      </div>
+
+      <div class="signup hide">
+        <h2>Registro</h2>
+        <div class="inputbox">
+          <input type="text" name="fullname" placeholder="  Nombre Completo">
+          <input id="email" type="text" name="email" placeholder="  Correo Electrónico">
+          <input id="password" type="password" name="password" placeholder="  Contraseña">
+        </div>
+        <button id="Register">Registrate</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+    import {getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDfO5Pm6-8VlIjbE2S3LlGqne5qxS3Qm1c",
+      authDomain: "slidelogin-d4385.firebaseapp.com",
+      projectId: "slidelogin-d4385",
+      storageBucket: "slidelogin-d4385.appspot.com",
+      messagingSenderId: "12926065477",
+      appId: "1:12926065477:web:1459090ba3507a0d783c2c"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    
+
+    document.getElementById("Register").addEventListener("click", function () {
+      const Email = document.getElementById("email").value;
+      const Password = document.getElementById("password").value;
+
+      createUserWithEmailAndPassword(auth, Email, Password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log("Cuenta creada");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          console.log(errorCode + errorMessage);
+
+          if (errorCode || errorMessage == True) {
+            alert("Llene los campos correctamente");
+          }
+        });
+      });
+
+      document.getElementById("Login").addEventListener('click',function(){
+        const LogEmail = document.getElementById("Logemail").value;
+        const LogPassword = document.getElementById("Logpassword").value;
+
+        signInWithEmailAndPassword(auth, LogEmail, LogPassword)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          window.open("/welcome.html","Transición");
+          console.log("Inicio de sesión Exitoso");
+
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          if (errorCode || errorMessage == True) {
+            alert("La cuenta ingresada no es correcta");
+          }
+        });
+      });
+
+
+  </script>
+</body>
+
+</html>
+  <script  src="app.js"></script>
+
+</body>
+</html>

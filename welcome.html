@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,300,100"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="welcome.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="Background">
+      <img
+        id="Bgimg"
+        src="https://i.pinimg.com/originals/da/00/e8/da00e8b5f67f4a4c8d4c0d539446e02b.jpg"
+      />
+    </div>
+    <div id="Container">
+      <h1>BIENVENIDO</h1>
+      <p>Gracias por formar parte de la comunidad</p>
+      <iframe id="gif" src="https://giphy.com/embed/AD52cvcgIblfy"></iframe>
+      <p>
+        <a
+          href="https://giphy.com/gifs/cat-brush-chis-sweet-home-AD52cvcgIblfy"
+        ></a>
+      </p>
+      <button id="Logout">Cerrar Sesión</button>
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+      import {
+        getAuth,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDfO5Pm6-8VlIjbE2S3LlGqne5qxS3Qm1c",
+        authDomain: "slidelogin-d4385.firebaseapp.com",
+        projectId: "slidelogin-d4385",
+        storageBucket: "slidelogin-d4385.appspot.com",
+        messagingSenderId: "12926065477",
+        appId: "1:12926065477:web:1459090ba3507a0d783c2c",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      document.getElementById("Logout").addEventListener("click", function () {
+        signOut(auth).then(() => {});
+        window.open("/index.html", "exit").catch((error) => {
+          alert("Algo ha salido mal");
+        });
+      });
+    </script>
+  </body>
+</html>
